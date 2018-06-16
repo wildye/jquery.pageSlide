@@ -22,18 +22,28 @@ body {
   /* IE8下为拉伸填充 */
   background-position: 50% 50%;
   background-repeat: no-repeat;
+  background-image: none\9;
+  /* IE9及以下取消背景图，使用 filter 方式引入背景图 */
+}
+:root .item {
+  filter: none;
+  /* 解决IE9 filter 生效问题 */
 }
 .item1 {
   background-image: url("../image/img-1.jpg");
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='./static/image/img-1.jpg', sizingMethod='scale');
 }
 .item2 {
   background-image: url("../image/img-2.jpg");
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='./static/image/img-2.jpg', sizingMethod='scale');
 }
 .item3 {
   background-image: url("../image/img-3.jpg");
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='./static/image/img-3.jpg', sizingMethod='scale');
 }
 .item4 {
   background-image: url("../image/img-4.jpg");
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='./static/image/img-4.jpg', sizingMethod='scale');
 }
 .pages {
   position: absolute;

@@ -21,7 +21,8 @@
 
       // todo: 初始化页面布局及事件绑定
       init: function () {
-        var me = this;               // this 多次调用，缓存起来
+        var me = this,               // this 多次调用，缓存起来
+            userAgent = navigator.userAgent;
 
         // 获取 DOM 元素
         me.selector = me.settings.selector;
@@ -31,6 +32,12 @@
 
         // 获取索引
         me.index = (me.settings.index >= 0 && me.settings.index < me.pageCount()) ? me.settings.index : 0;
+        // 获取浏览器信息
+
+
+        if (userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1) {
+          me.isIE8 = navigator.userAgent.toLowerCase().match(/msie ([\d.]+)/)[1] == "8.0" ? true : false;
+        }
 
 
         me._initLayout(); // 页面布局
@@ -97,9 +104,8 @@
 
         // 控制点移入切换
         if (me.settings.pagesDot) {
-          me._ie8Index();
           me.pages.find("span").on("mouseover", function () {
-            me.index = $(this).index();
+            me.index = me._oddIndex($(this).index());
             me._switchPage();
           });
         }
@@ -194,22 +200,29 @@
         }, me.settings.speed);
       },
 
-      // IE8控制点收PIE影响，索引异常
-      _ie8Index: function () {
-        if(ScriptEngineMinorVersion() != 0 && ScriptEngineMinorVersion < 8) {
-          //这是 IE8-
-          console.log("hehe");
-        }
-        var me = this,
-            arr = [];
-        console.log(me.pageCount());
+      // todo: IE8控制点索引受PIE生成的元素影响, 这里做一个索引转换
+      _oddIndex: function (index) {
+        var me = this;
+        if (!me.isIE8) return index;
+
+        var arr = [1];
+
         for (var i = 1; i <= me.pageCount(); i++) {
-          arr.push(i)
+          arr.push(arr[arr.length - 1] + 2);
         }
-        arr.reduce(function (val, newVal) {
-          return val += 2;
-        })
-        
+
+        // 让IE8兼容indexOf方法
+        if (!Array.prototype.indexOf) {
+          Array.prototype.indexOf = function(val){
+            var me = this;
+            for(var i =0; i < me.length; i++){
+              if(me[i] == val) return i;
+            }
+            return -1;
+          };
+        }
+
+        return arr.indexOf(index);
       }
 
     };
