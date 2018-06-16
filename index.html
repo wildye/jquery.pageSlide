@@ -25,9 +25,23 @@
   (function ($) {
     // 实例化插件
     $('[data-PageSlide]').PageSlide({
-      index: 0,
-      loop: true,
-      pages: true
+      selector: {
+        items: ".items", // 容器
+        item: ".item",   // 子项
+        pages: ".pages"  // 分页
+      },
+
+      index: 0,          // 索引
+
+      loop: true,        // 启用循环切换
+      interval: 1500,    // 切换间隔
+      speed: 800,        // 过渡时间
+
+      pages: true,       // 启用分页
+      pagesArrows: true, // 分页箭头控制
+      pagesDot: true,    // 分页点控制
+      keyboard: true,    // 启用键盘控制
+      mouseRoll: true    // 启用鼠标滚轮控制
     });
   })(jQuery);
 </script>

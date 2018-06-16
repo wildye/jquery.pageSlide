@@ -134,15 +134,16 @@
 
         // 绑定鼠标滚轮事件
         if (me.settings.mouseRoll) {
-          e.preventDefault();
-          var delta = e.originalEvent.wheelDelta || -e.originalEvent.detail;
-          if (me.canscroll) {
+          me.element.on("mousewheel DOMMouseScroll", function (e) {
+            e.preventDefault();
+            var delta = e.originalEvent.wheelDelta || -e.originalEvent.detail;
+
             if (delta > 0 && (me.index && !me.settings.loop || me.settings.loop)) {
               me.prev();
-            } else if (delta < 0 && (me.index < (me.pagesCount() - 1) && !me.settings.loop || me.settings.loop)) {
+            } else if (delta < 0 && (me.index < (me.pageCount() - 1) && !me.settings.loop || me.settings.loop)) {
               me.next();
             }
-          }
+          });
         }
 
       },
