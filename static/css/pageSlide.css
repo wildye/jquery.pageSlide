@@ -11,11 +11,11 @@ body {
 [data-PageSlide]:hover .btn {
   opacity: 1;
 }
-.items {
+[data-PageSlide] .items {
   position: relative;
   height: inherit;
 }
-.item {
+[data-PageSlide] .item {
   float: left;
   height: inherit;
   background-size: cover;
@@ -25,34 +25,34 @@ body {
   background-image: none\9;
   /* IE9及以下取消背景图，使用 filter 方式引入背景图 */
 }
-:root .item {
+[data-PageSlide] :root .item {
   filter: none;
   /* 解决IE9 filter 生效问题 */
 }
-.item1 {
+[data-PageSlide] .item1 {
   background-image: url("../image/img-1.jpg");
   filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='./static/image/img-1.jpg', sizingMethod='scale');
 }
-.item2 {
+[data-PageSlide] .item2 {
   background-image: url("../image/img-2.jpg");
   filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='./static/image/img-2.jpg', sizingMethod='scale');
 }
-.item3 {
+[data-PageSlide] .item3 {
   background-image: url("../image/img-3.jpg");
   filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='./static/image/img-3.jpg', sizingMethod='scale');
 }
-.item4 {
+[data-PageSlide] .item4 {
   background-image: url("../image/img-4.jpg");
   filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='./static/image/img-4.jpg', sizingMethod='scale');
 }
-.pages {
+[data-PageSlide] .pages {
   position: absolute;
   width: 100%;
   bottom: 20px;
   z-index: 10;
   text-align: center;
 }
-.pages > span {
+[data-PageSlide] .pages > span {
   display: inline-block;
   margin: 0 7px;
   width: 15px;
@@ -65,10 +65,10 @@ body {
   -webkit-border-radius: 50%;
   behavior: url(static/js/PIE/PIE.htc);
 }
-.pages > span.on {
+[data-PageSlide] .pages > span.on {
   background: #39a6eb;
 }
-.btn {
+[data-PageSlide] .btn {
   position: absolute;
   top: 50%;
   width: 30px;
@@ -85,10 +85,10 @@ body {
   -webkit-border-radius: 50%;
   behavior: url(static/js/PIE/PIE.htc);
 }
-.btn.L {
+[data-PageSlide] .btn.L {
   left: 0;
 }
-.btn.R {
+[data-PageSlide] .btn.R {
   right: 0;
 }
-/*# sourceMappingURL=master.css.map */
+/*# sourceMappingURL=pageSlide.css.map */
